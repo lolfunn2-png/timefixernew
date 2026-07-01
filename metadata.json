@@ -1,0 +1,6 @@
+{
+  "name": "Auto Time Fix",
+  "description": "An Xposed module and companion dashboard to automatically force-sync system time to an NTP server upon boot and network ready on Android devices and STBs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

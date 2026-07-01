@@ -1,0 +1,62 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Outer Sync Ring 1 -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5.5"
+        android:strokeLineCap="round"
+        android:pathData="M 32.5,23.5 C 37.6,19.5 43.8,17.2 50.5,17.2 C 67.3,17.2 81.0,30.9 81.0,47.7" />
+        
+    <!-- Sync Arrow 1 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 81.0,47.7 L 74.5,41.2 L 81.0,47.7 L 87.5,41.2 Z"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Outer Sync Ring 2 -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5.5"
+        android:strokeLineCap="round"
+        android:pathData="M 75.5,71.5 C 70.4,75.5 64.2,77.8 57.5,77.8 C 40.7,77.8 27.0,64.1 27.0,47.3" />
+
+    <!-- Sync Arrow 2 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 27.0,47.3 L 33.5,53.8 L 27.0,47.3 L 20.5,53.8 Z"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Clock Center Face -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5.5"
+        android:pathData="M 54,47.5 m -18,0 a 18,18 0 1,1 36,0 a 18,18 0 1,1 -36,0" />
+
+    <!-- Clock Hands -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5.5"
+        android:strokeLineCap="round"
+        android:pathData="M 54,47.5 L 54,36.5" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5.5"
+        android:strokeLineCap="round"
+        android:pathData="M 54,47.5 L 63,47.5" />
+
+</vector>

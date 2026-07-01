@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Auto Time Fix</string>
+    <string name="status_title">Module Status</string>
+    <string name="status_active">Xposed Module Active</string>
+    <string name="status_inactive">Xposed Module Inactive</string>
+    <string name="status_inactive_desc">Enable this module in your Xposed / LSPosed manager and restart your device to hook system ready.</string>
+    <string name="sync_status_title">NTP Sync Status</string>
+    <string name="btn_sync_now">Force Sync Now</string>
+    <string name="btn_clear_logs">Clear Logs</string>
+    <string name="btn_save_config">Save Configuration</string>
+    <string name="config_title">Configuration</string>
+    <string name="config_ntp_server">NTP Server Address</string>
+    <string name="config_boot_delay">Initial Boot Delay (Seconds)</string>
+    <string name="config_net_timeout">Network Ready Timeout (Seconds)</string>
+    <string name="config_retry_count">Max Retry Count</string>
+    <string name="logs_title">Sync Action Logs</string>
+    <string name="diagnostic_title">Diagnostics</string>
+    <string name="diagnostic_ping">Ping 8.8.8.8</string>
+    <string name="diagnostic_time">Local Time</string>
+    <string name="diagnostic_ip">Internet Connectivity</string>
+</resources>
