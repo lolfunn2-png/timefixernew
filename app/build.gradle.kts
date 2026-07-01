@@ -1,11 +1,7 @@
 plugins {
-  alias(libs.plugins.android.application)
-
+  id("com.android.application")
   id("org.jetbrains.kotlin.android")
   id("org.jetbrains.kotlin.kapt")
-
-  alias(libs.plugins.roborazzi)
-  alias(libs.plugins.secrets)
 }
 
 android {
