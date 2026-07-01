@@ -647,11 +647,13 @@
             </RelativeLayout>
 
             <!-- SCROLLABLE LOG LIST -->
-            <LinearLayout
-                android:id="@+id/id_logs_layout"
+            <TextView
+                android:id="@+id/id_logs_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:textColor="#E6E1E5"
+                android:textSize="11sp"
+                android:typeface="monospace" />
         </LinearLayout>
 
     </LinearLayout>

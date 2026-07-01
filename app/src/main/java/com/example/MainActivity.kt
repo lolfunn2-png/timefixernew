@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var retryCountEditText: EditText
     private lateinit var saveConfigButton: Button
 
-    private lateinit var logsLayout: LinearLayout
+    private lateinit var logsTextView: TextView
     private lateinit var clearLogsButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
         retryCountEditText = findViewById(R.id.id_retry_count)
         saveConfigButton = findViewById(R.id.id_save_config_btn)
 
-        logsLayout = findViewById(R.id.id_logs_layout)
+        logsTextView = findViewById(R.id.id_logs_text)
         clearLogsButton = findViewById(R.id.id_clear_logs_btn)
 
         // Set Click Listeners
@@ -127,37 +127,6 @@ class MainActivity : AppCompatActivity() {
 
         // Bind flows to update UI dynamically
         bindViewModelFlows()
-    }
-
-    private fun dpToPx(dp: Int): Int {
-        return (dp * resources.displayMetrics.density).toInt()
-    }
-
-    private fun addLogLineToTerminal(time: String, message: String, textColorHex: String) {
-        val row = LinearLayout(this).apply {
-            orientation = LinearLayout.HORIZONTAL
-            layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            setPadding(0, dpToPx(2), 0, dpToPx(2))
-        }
-
-        val timeText = TextView(this).apply {
-            text = "[$time]"
-            textSize = 11f
-            setTextColor(Color.parseColor("#938F99"))
-            setTypeface(Typeface.MONOSPACE, Typeface.BOLD)
-            setPadding(0, 0, dpToPx(6), 0)
-        }
-        row.addView(timeText)
-
-        val msgText = TextView(this).apply {
-            text = message
-            textSize = 11f
-            setTextColor(Color.parseColor(textColorHex))
-            setTypeface(Typeface.MONOSPACE, Typeface.NORMAL)
-        }
-        row.addView(msgText, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f))
-
-        logsLayout.addView(row)
     }
 
     private fun bindViewModelFlows() {
@@ -284,27 +253,29 @@ class MainActivity : AppCompatActivity() {
         // Collect Output Debug Logs List
         lifecycleScope.launch {
             viewModel.logListState.collect { logs ->
-                logsLayout.removeAllViews()
+                val sb = StringBuilder()
                 
                 // Add default boot trace logs
-                addLogLineToTerminal("12:00:01", "XposedBridge: Loading AutoTimeFix...", "#938F99")
-                addLogLineToTerminal("12:00:02", "AutoTimeFix: systemReady hooked successfully!", "#1A73E8")
+                sb.append("<font color=\"#938F99\">[12:00:01] XposedBridge: Loading AutoTimeFix...</font><br/>")
+                sb.append("<font color=\"#1A73E8\">[12:00:02] AutoTimeFix: systemReady hooked successfully!</font><br/>")
                 
                 if (logs.isEmpty()) {
-                    addLogLineToTerminal("12:00:03", "No actions run yet. Use manual sync or reboot device.", "#938F99")
+                    sb.append("<font color=\"#938F99\">[12:00:03] No actions run yet. Use manual sync or reboot device.</font><br/>")
                 } else {
                     logs.take(15).forEach { log ->
                         val sdf = java.text.SimpleDateFormat("HH:mm:ss", java.util.Locale.getDefault())
                         val timeStr = sdf.format(java.util.Date(log.timestamp))
                         val colorHex = when (log.status) {
-                            "SUCCESS" -> "#4ADE80" // Vivid Terminal Green
-                            "FAILED" -> "#F87171"  // Vivid Terminal Red
-                            "PENDING" -> "#FBBF24" // Vivid Terminal Yellow
+                            "SUCCESS" -> "#4ADE80"
+                            "FAILED" -> "#F87171"
+                            "PENDING" -> "#FBBF24"
                             else -> "#E6E1E5"
                         }
-                        addLogLineToTerminal(timeStr, "${log.action}: ${log.message}", colorHex)
+                        sb.append("<font color=\"#938F99\">[$timeStr]</font> <font color=\"$colorHex\">${log.action}: ${log.message}</font><br/>")
                     }
                 }
+                
+                logsTextView.text = android.text.Html.fromHtml(sb.toString())
             }
         }
     }
